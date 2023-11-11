@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,9 @@ use App\Http\Controllers\Admin\DashboardController;
 */
 
 //Client routes
-//Client routes
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::prefix('categories')->group(function () {
     
     //Danh sách chuyên mục
@@ -40,7 +43,7 @@ Route::prefix('categories')->group(function () {
 });
 
 //Admin routes
-Route::prefix('admin')->group(function(){
+Route::middleware('auth.admin')->prefix('admin')->group(function(){
     Route::get('/', [DashboardController::class, 'index']);
-    Route::resource('students', StudentsController::class);
+    Route::resource('students', StudentsController::class)->middleware('auth.admin.student');
 });

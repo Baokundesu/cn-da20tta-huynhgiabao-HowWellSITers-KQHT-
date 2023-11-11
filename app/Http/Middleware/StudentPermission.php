@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthApi
+class StudentPermission
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class AuthApi
      */
     public function handle(Request $request, Closure $next): Response
     {
-        echo 'Request API';
+        //echo 'Request student admin';
         return $next($request);
     }
 }
