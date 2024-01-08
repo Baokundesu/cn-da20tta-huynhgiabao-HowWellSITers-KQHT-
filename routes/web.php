@@ -1,49 +1,55 @@
 <?php
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DiemController;
+use App\Http\Controllers\ImportController;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\Admin\StudentsController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\HomeController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::group(['middleware' => 'web'], function () {
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', function () {
+            return view('Home.index');
+        })->name('user.index');
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('/login', [LoginController::class, 'login']);
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    });
 
-//Client routes
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+        Route::post('/login', [AdminController::class, 'login']);
+        Route::get('/register', [AdminController::class, 'showRegistrationForm'])->name('admin.showRegisterForm');
+        Route::post('/register', [AdminController::class, 'register']);
+        Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+        Route::get('/daotao', [AdminController::class, 'showDaotaoList'])->name('admin.daotao.index');
+        Route::get('/daotao/create', [AdminController::class, 'createDaotaoForm'])->name('admin.daotao.create');
+        Route::post('/daotao/create', [AdminController::class, 'createDaotao']);
+        Route::get('/daotao/edit/{MaDaoTao}', [AdminController::class, 'editDaotaoForm'])->name('admin.daotao.edit');
+        Route::post('/daotao/edit/{MaDaoTao}', [AdminController::class, 'editDaotao']);
+        Route::get('/daotao/delete/{MaDaoTao}', [AdminController::class, 'deleteDaotao'])->name('admin.daotao.delete');
+        Route::get('/monhoc', [AdminController::class, 'showMonHocList'])->name('admin.monhoc.index');
+        Route::get('/monhoc/create', [AdminController::class, 'createMonHocForm'])->name('admin.monhoc.create');
+        Route::post('/monhoc/create', [AdminController::class, 'createMonHoc']);
+        Route::get('/monhoc/edit/{MaMonHoc}', [AdminController::class, 'editMonHocForm'])->name('admin.monhoc.edit');
+        Route::put('/monhoc/edit/{MaMonHoc}', [AdminController::class, 'editMonHoc'])->name('admin.monhoc.update');
+        Route::post('/monhoc/edit/{MaMonHoc}', [AdminController::class, 'editMonHoc']);
+        Route::get('/monhoc/delete/{MaMonHoc}', [AdminController::class, 'deleteMonHoc'])->name('admin.monhoc.delete');
+    });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', function () {
+        return view('Home.index');
+    });
 
-Route::prefix('categories')->group(function () {
+    Route::get('/diems/create', function () {
+        return view('create');
+    })->name('diem.create');
+    Route::post('/diems/create', [ImportController::class, 'import']);
     
-    //Danh sách chuyên mục
-    Route::get('/', [CategoriesController::class, 'index'])->name('categories.list');
-
-    //Lấy chi tiết 1 chuyên mục (Xài show form)
-    Route::get('/edit/{id}', [CategoriesController::class, 'getCategory'])->name('categories.edit');
-
-    //Xử lý update chuyên mục
-    Route::post('/edit/{id}', [CategoriesController::class, 'updateCategory']);
-
-    //Hiển thị form add dữ liệu
-    Route::get('/add', [CategoriesController::class, 'addCategory'])->name('categories.add');
-
-    //Xử lý thêm chuyên mục
-    Route::post('/add', [CategoriesController::class, 'handleCategory']);
-
-    //Xóa chuyên mục
-    Route::delete('/delate/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.delete');
-});
-
-//Admin routes
-Route::middleware('auth.admin')->prefix('admin')->group(function(){
-    Route::get('/', [DashboardController::class, 'index']);
-    Route::resource('students', StudentsController::class)->middleware('auth.admin.student');
+    Route::middleware('auth.teacher')->group(function () {
+        Route::group(['prefix' => 'teacher'], function () {
+            Route::get('/score/create', [DiemController::class, 'createForm'])->name('diem.create.form');
+            Route::post('/score/create', [DiemController::class, 'create'])->name('diem.create');
+            Route::get('/score/index', [DiemController::class, 'index'])->name('diem.index');
+        });
+    });
 });
