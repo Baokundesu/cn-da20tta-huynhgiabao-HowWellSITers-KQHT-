@@ -1,5 +1,5 @@
-#Website How Well for SITers phân hệ quản lý kết quả học tập.
-##Cài đặt
+# Website How Well for SITers phân hệ quản lý kết quả học tập.
+## Cài đặt
 - Cài đặt **VS Code** để quản lý mã nguồn dự án.
   >Link download: https://code.visualstudio.com/
 - Cài đặt **XAMPP** để chạy project trên môi trường localhost.
