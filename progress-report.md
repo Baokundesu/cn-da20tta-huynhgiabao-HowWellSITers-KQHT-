@@ -10,3 +10,21 @@
 - Hoàn thiện mô hình cơ sở dữ liệu.
 - Thiết kế giao diện đăng nhập, đăng ký.
 - Báo cáo tiến độ với GVHD.
+
+## Tuần 3: Từ ngày 11/12/2023 đến 17/12/2023
+- Xây dựng chức năng quản lý chương trình đào tạo, quản lý môn học thuộc chương trình đào tạo dành cho admin. ✅
+- Xây dựng chức năng nạp bảng điểm từ file excel và xóa bảng điểm dành cho CVHT. (chưa hoàn thiện)
+- Chạy demo và báo cáo tiến độ.
+
+## Tuần 4: Từ ngày 25/12/2023 đến 31/12/2023
+-	Xây dụng chức năng xem kết quả phân tích thống kê điểm số, học phần của sinh viên đạt và chưa đạt so với toàn bộ chương trình đào tạo của ngành dành cho sinh viên và CVHT (chưa hoàn thiện)
+-	Viết báo cáo.
+-	Chạy demo và báo cáo tiến độ.
+
+## Kết thúc: Từ ngày 02/01/2024 đến ngày 07/01/2024
+-	Hoàn thành sản phẩm demo.
+-	Chạy demo và báo cáo tiến độ.
+-	Hoàn thiện quyển báo cáo.
+-	In và nộp sản phẩm.
+
+
