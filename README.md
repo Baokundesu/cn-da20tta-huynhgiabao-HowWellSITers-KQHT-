@@ -2,7 +2,7 @@
 ## Cài đặt
 - Cài đặt **VS Code** để quản lý mã nguồn dự án.
   >Link download: https://code.visualstudio.com/
-- Cài đặt **XAMPP** để chạy project trên môi trường localhost.
+- Cài đặt **XAMPP** để chạy dự án trên môi trường localhost.
   >Link download: https://www.apachefriends.org/download.html
 - Cài đặt **Composer** để tạo dự án Laravel.
   >Link download: https://getcomposer.org/download/
