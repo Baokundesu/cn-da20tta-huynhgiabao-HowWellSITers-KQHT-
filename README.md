@@ -6,7 +6,7 @@
   >Link download: https://www.apachefriends.org/download.html
 - Cài đặt **Composer** để tạo dự án Laravel.
   >Link download: https://getcomposer.org/download/
-##Cách chạy dự án trên localhost
+## Cách chạy dự án trên localhost
 - B1: Mở XAMPP Control Panel
 - B2: Start Apache và MySQL
 - B3: Mở VS Code và mở thư mục chứa dự án
